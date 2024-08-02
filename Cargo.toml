@@ -1,0 +1,15 @@
+[package]
+name = "steel-postgres"
+edition = "2021"
+version = "0.1.0"
+
+[lib]
+name = "steel_postgres"
+crate-type = ["cdylib"]
+
+[dependencies]
+abi_stable = "0.11.1"
+steel-core = { git = "https://github.com/mattwparas/steel.git", branch = "mwp-add-byte-vectors-ffi", version = "0.6.0", features = ["dylibs"] }
+postgres = "0.19.8"
+postgres-types = "*"
+bytes = "*"
