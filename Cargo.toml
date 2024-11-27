@@ -9,7 +9,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 abi_stable = "0.11.1"
-steel-core = { git = "https://github.com/mattwparas/steel.git", version = "0.6.0", features = ["dylibs"] }
+steel-core = { git = "https://github.com/mattwparas/steel.git", version = "0.6.0", features = ["dylibs", "sync"] }
 postgres = "0.19.8"
 postgres-types = "*"
 bytes = "*"

@@ -16,6 +16,9 @@ struct PostgresClient {
     client: Client,
 }
 
+unsafe impl Send for PostgresClient {}
+unsafe impl Sync for PostgresClient {}
+
 enum Argument {
     Bool(bool),
     Number(f64),
@@ -197,6 +200,7 @@ impl PostgresClient {
 impl Custom for PostgresClient {}
 
 #[allow(dead_code)]
+#[derive(Debug)]
 enum PostgresError {
     Error(postgres::Error),
     TypeMismatch,
@@ -209,6 +213,14 @@ impl From<postgres::Error> for PostgresError {
         Self::Error(value)
     }
 }
+
+impl std::fmt::Display for PostgresError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+
+impl Error for PostgresError {}
 
 steel::declare_module!(build_module);
 
